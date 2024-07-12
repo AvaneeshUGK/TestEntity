@@ -1,0 +1,4 @@
+id,DateTime,User,OperationType,Entity,Changes
+"f7cf8c38-215c-4f69-b5f1-6d791e47336c","2024-07-11T10:30:00","john.doe@example.com","CREATE","Entity1","Created new customer profile"
+"6a1c8e9d-7d2e-4d3c-a968-4e6f9a65c38a","2024-07-10T15:45:00","jane.smith@example.com","UPDATE","Entity1","Updated order shipping information"
+"9b0a1a95-22e4-4952-9b8d-dfa5f37882b8","2024-07-09T09:00:00","michael.johnson@example.com","DELETE","Entity1","Deleted product from inventory"

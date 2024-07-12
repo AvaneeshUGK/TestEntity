@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
+	<VBox core:require="{ handler: 'reportentity/ext/fragment/Insurance'}">
+		<Button text="Liability" press="handler.onPress" />
+		<Button text="Property" press="handler.onPress" />
+		<Button text="Employee" press="handler.onPress" />
+	</VBox>
+</core:FragmentDefinition>

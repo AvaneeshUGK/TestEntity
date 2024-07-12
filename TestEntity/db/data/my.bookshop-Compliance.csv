@@ -1,0 +1,4 @@
+year,Entity,FinancialYear,EffectiveDate,DueDate,Status,ExtensionDate
+2022,Entity1,2021-2022,2022-01-01,2022-03-31,Compliant,
+2023,Entity2,2021-2022,2022-01-01,2022-03-31,Non-compliant,2022-04-15
+2024,Entity3,2021-2022,2022-01-01,2022-03-31,Compliant,

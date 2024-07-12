@@ -1,0 +1,4 @@
+id,Entity,name_of_subsidiary,select_division,select_country,select_type_of_insurance,others,select_coverage,select_currencey,enter_sum,convert_Sum,enter_premium,convert_premium_in_usd,policy_date,policy_expiry_date
+fdd91e57-3f3d-43b4-bfd4-83f5b6a93d3c,Entity1,Subsidiary A,Division A,Country1,Type A,Other details,Coverage A,Currency A,100000,95000,5000,4750,2023-01-01,2024-01-01
+c8f9a721-94fe-4a9d-bc17-95c7d2e60f54,Entity2,Subsidiary B,Division B,Country2,Type B,Other details,Coverage B,Currency B,200000,190000,10000,9500,2023-02-01,2024-02-01
+e46d1451-5938-49c1-b9f2-12bb71c8b906,Entity3,Subsidiary C,Division C,Country3,Type C,Other details,Coverage C,Currency C,150000,142500,7500,7125,2023-03-01,2024-03-01

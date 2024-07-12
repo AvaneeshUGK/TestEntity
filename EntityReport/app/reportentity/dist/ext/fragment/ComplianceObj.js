@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageToast"],function(e){"use strict";return{onPress:async function(e){debugger;var a=e.oSource.oParent.getCells()[0].getContent().getContentDisplay().getProperty("text");var t=sap.ushell&&sap.ushell.Container&&await sap.ushell.Container.getServiceAsync("Navigation")||"";if(t!=""){await t.navigate({target:{semanticObject:"complaince33semobj",action:"display"},params:{year:a}})}}}});
+//# sourceMappingURL=ComplianceObj.js.map

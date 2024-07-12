@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageToast"],function(a){"use strict";return{onPress:async function(a){var e=sap.ushell&&sap.ushell.Container&&await sap.ushell.Container.getServiceAsync("Navigation")||"";if(e!=""){await e.navigate({target:{semanticObject:"insurancesemobj",action:"display"}})}}}});
+//# sourceMappingURL=Insurance.js.map

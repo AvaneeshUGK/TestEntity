@@ -1,0 +1,4 @@
+Entity,Country,CompanyName,ListofDirectors,Admin,Comments,User,Status,Status_val
+Entity1,Country1,Company A,"Director A, Director B",Admin A,Comments for Entity 1,User1,Active,1
+Entity2,Country2,Company B,"Director C, Director D",Admin B,Comments for Entity 2,User2,Inactive,0
+Entity3,Country3,Company C,"Director E, Director F",Admin C,Comments for Entity 3,User3,Active,1
