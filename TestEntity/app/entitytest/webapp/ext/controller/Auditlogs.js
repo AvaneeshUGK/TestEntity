@@ -233,7 +233,7 @@ sap.ui.define([
                 var oColumnListItem = new ColumnListItem({
                     cells:oCells
                 })
-                var oFilter = new Filter("Entity",FilterOperator.Contains,"Compliance")
+                var oFilter = new Filter("Entity",FilterOperator.Contains,"MasterData")
 
                 // oTable.bindItems("/EntityAuditLogs",oColumnListItem);
                 oTable.bindAggregation("items",{

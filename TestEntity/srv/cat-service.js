@@ -4,6 +4,20 @@ module.exports = cds.service.impl(async function(){
 
     var {MasterData,Compliance,Files,EntityAuditLogs,insurance} = this.entities;
 
+    this.on('CREATE',MasterData, async function(req,next){
+        var date = new Date();
+        var DateTime = date.toLocaleString('en-GB', { timeZone: 'UTC' });
+        var User = req?.headers['x-username']
+        var Update = await INSERT.into(EntityAuditLogs).entries([{
+            DateTime:DateTime,
+            User:User,
+            OperationType:"CREATE",
+            Entity:"MasterData"
+        }])
+
+        return next()
+    })
+
     this.before('CREATE', Files.drafts, async req => {
         debugger
         console.log('Create called')
@@ -11,7 +25,14 @@ module.exports = cds.service.impl(async function(){
         // var draftAdmin =  await SELECT.from('DRAFT_DRAFTADMINISTRATIVEDATA')
         // req.data.DraftAdministrativeData_DraftUUID = draftAdmin[draftAdmin.length - 1].DRAFTUUID;
         // req.data.HasActiveEntity = true;
-        req.data.IsActiveEntity = false;
+        // req.data.IsActiveEntity = false;
+        req.data.url = `/odata/v4/catalog/Files(ID=${req.data.ID},IsActiveEntity=false)/content`;
+    })
+    this.before('CREATE', Files, async req => {
+        debugger
+        console.log('Create called')
+        console.log(JSON.stringify(req.data))
+        // req.data.IsActiveEntity = false;
         req.data.url = `/odata/v4/catalog/Files(ID=${req.data.ID},IsActiveEntity=true)/content`;
     })
 
