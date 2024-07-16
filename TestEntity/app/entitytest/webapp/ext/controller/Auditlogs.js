@@ -6,8 +6,14 @@ sap.ui.define([
     "sap/m/Table",
     "sap/m/Column",
     "sap/m/Text",
-    "sap/m/ColumnListItem"
-], function(MessageToast,Dialog,Button,Library,Table,Column,Text,ColumnListItem) {
+    "sap/m/ColumnListItem",
+    "sap/ui/table/Table",
+    "sap/ui/table/Row",
+    "sap/m/Label",
+    "sap/ui/table/Column",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function(MessageToast,Dialog,Button,Library,Table,Column,Text,ColumnListItem,uiTable,uiRow,Label,uiColumn,Filter,FilterOperator) {
     'use strict';
     var ButtonType = Library.ButtonType;
 
@@ -41,9 +47,10 @@ sap.ui.define([
                 ///////////////////////////// Audit Table //////////////////////////////////
 
                 var oTable = new Table({
-                    fixedLayout:"Strict",
+                    fixedLayout:"Strict"
                     // showOverlay:true
                 })
+                oTable.addStyleClass("overflowClass")
                 var oColumn1 = new Column({
                     header: new Text({
                         text:"DateTime",
@@ -106,8 +113,9 @@ sap.ui.define([
                     text:"{Entity}"
                 })
 
-
+///////////////////////////////////////////////// m.Table ////////////////////////////
                 var oCell5 = new Table({
+                    visible:'{= %{OperationType} === \'UPDATE\' }'
                     // fixedLayout:true
                     // width:"500px"
                 })
@@ -147,28 +155,73 @@ sap.ui.define([
                 oCellss.push(oCell12)
                 oCellss.push(oCell13)
 
-                // var p1 = {
-                //     path:"toChanges",
-                //     template: oCell11
-                // }
-                // var p2 = {
-                //     path:"toChanges",
-                //     template: oCell12
-                // }
-                // var p3 = {
-                //     path:"toChanges",
-                //     template: oCell13
-                // }
 
                 var oChangesColumnListItem = new ColumnListItem({
                     cells:oCellss
                 })
 
                 oCell5.bindAggregation("items","toChanges",oChangesColumnListItem)
-                // oCell5.bindItems("/EntityAuditLogs",oChangesColumnListItem);
-                // oCell5.bindRows("/EntityAuditLogs")
 
-                // oCell5.bindElement("/EntityAuditLogs")
+                ///////////////////////////////////////////////////////////////////////////////////
+
+                //////////////// ui.table.Table ////////////////////////////////
+
+                // var oCell5 = new uiTable();
+
+                // var uiColumn1 = new uiColumn({
+                //     label: new Label({
+                //         text:"Field"
+                //     }),
+                //     template: new Text({
+                //         text:"{Field}"
+                //     }),
+                //     width:"11rem"
+                // })
+                // var uiColumn2 = new uiColumn({
+                //     label: new Label({
+                //         text:"Old Value"
+                //     }),
+                //     width:"11rem",
+                //     template: new Text({
+                //         text:"{Field}"
+                //     })
+                // })
+                // var uiColumn3 = new uiColumn({
+                //     label: new Label({
+                //         text:"New Value"
+                //     }),
+                //     width:"11rem",
+                //     template: new Text({
+                //         text:"{Field}"
+                //     })
+                // })
+
+                // oCell5.addColumn(uiColumn1)
+                // oCell5.addColumn(uiColumn2)
+                // oCell5.addColumn(uiColumn3)
+
+                // let oCellss = [];
+                // var oCell11 = new Text({
+                //     text:"{Field}"
+                // })
+                // var oCell12 = new Text({
+                //     text:"{OldValue}"
+                // })
+                // var oCell13 = new Text({
+                //     text:"{NewValue}"
+                // })
+
+                // oCellss.push(oCell11)
+                // oCellss.push(oCell12)
+                // oCellss.push(oCell13)
+
+                // var ouiRow = new uiRow({
+                //     cells:oCellss
+                // })
+
+                // oCell5.bindAggregation("rows","toChanges",ouiRow);
+
+                ///////////////////////////////////////////////////////
 
 
                 oCells.push(oCell1)
@@ -180,8 +233,14 @@ sap.ui.define([
                 var oColumnListItem = new ColumnListItem({
                     cells:oCells
                 })
+                var oFilter = new Filter("Entity",FilterOperator.Contains,"Compliance")
 
-                oTable.bindItems("/EntityAuditLogs",oColumnListItem);
+                // oTable.bindItems("/EntityAuditLogs",oColumnListItem);
+                oTable.bindAggregation("items",{
+                    path:"/EntityAuditLogs",
+                    template:oColumnListItem,
+                    filters:[oFilter]
+                })
 
                 this.oEntityAuditDialog.addContent(oTable);
                 this._view.addDependent(this.oEntityAuditDialog);

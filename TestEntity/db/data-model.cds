@@ -121,7 +121,7 @@ entity EntityAuditLogs {
 
 entity Changes {
     key Field:String;
-    id:UUID;
+    key id:UUID;
     OldValue:String;
     NewValue:String;
     toEntityAuditLogs: Association to one EntityAuditLogs on toEntityAuditLogs.id = id;

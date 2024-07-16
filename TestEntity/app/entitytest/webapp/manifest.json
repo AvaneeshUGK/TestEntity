@@ -94,7 +94,10 @@
       }
     },
     "resources": {
-      "css": []
+      "css": [{
+        "uri":"css/styles.css"
+      }
+      ]
     },
     "routing": {
       "config": {},
