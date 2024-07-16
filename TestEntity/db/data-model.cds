@@ -23,6 +23,7 @@ entity MasterData{
     Status_val : Integer;
     toCompliance: Composition of many Compliance on toCompliance.toMaster = $self;
     toInsurance: Composition of many insurance on toInsurance.toMaster = $self;
+    toFiles: Composition of many Files on toFiles.toMaster = $self;
 }
 
 entity insurance{
@@ -97,6 +98,7 @@ entity FilesCompliance: cuid, managed{
 
 entity Files : cuid, managed {
     file_id           : UUID;
+    Entity:String;
     user              : String;
     @Core.MediaType  : mediaType
     content          : LargeBinary;
@@ -107,6 +109,7 @@ entity Files : cuid, managed {
     // size: Integer;
     Folder           : String;
     url              : String;
+    toMaster: Association to one MasterData on toMaster.Entity = Entity;
 }
 
 entity EntityAuditLogs {

@@ -64,8 +64,9 @@
         "sap.ui.core": {},
         "sap.ushell": {},
         "sap.fe.templates": {},
-        "sap.ui.table":{},
-        "sap.ui.commons":{}
+        "sap.ui.table": {},
+        "sap.ui.commons": {},
+        "sap.ui.webc.main": {}
       }
     },
     "contentDensities": {
@@ -94,9 +95,10 @@
       }
     },
     "resources": {
-      "css": [{
-        "uri":"css/styles.css"
-      }
+      "css": [
+        {
+          "uri": "css/styles.css"
+        }
       ]
     },
     "routing": {
@@ -234,6 +236,15 @@
               "contextPath": "/MasterData/toInsurance",
               "navigation": {}
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController#entitytest::MasterDataObjectPage": {
+            "controllerName": "entitytest.ext.controller.ObjectPageController"
           }
         }
       }

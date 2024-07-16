@@ -4,6 +4,17 @@ module.exports = cds.service.impl(async function(){
 
     var {MasterData,Compliance,Files,EntityAuditLogs,insurance} = this.entities;
 
+    this.before('CREATE', Files.drafts, async req => {
+        debugger
+        console.log('Create called')
+        console.log(JSON.stringify(req.data))
+        // var draftAdmin =  await SELECT.from('DRAFT_DRAFTADMINISTRATIVEDATA')
+        // req.data.DraftAdministrativeData_DraftUUID = draftAdmin[draftAdmin.length - 1].DRAFTUUID;
+        // req.data.HasActiveEntity = true;
+        req.data.IsActiveEntity = false;
+        req.data.url = `/odata/v4/catalog/Files(ID=${req.data.ID},IsActiveEntity=true)/content`;
+    })
+
     this.on('UPDATE',Compliance, async function(req,next){
         debugger
         return next()
