@@ -652,6 +652,14 @@ sap.ui.define([
             // 	}
             // 	return iconUrl;
         },
+        onRemovePressed: function (oEvent) {
+            debugger;
+            oEvent.preventDefault();
+            oEvent.getParameter("item").getBindingContext().delete();
+            // MessageToast.show("Selected file has been deleted");
+            // oEvent.getParameter("item").destroy();
+
+        },
         onUploadCompleted: function (oEvent) {
             debugger;
             var oUploadSet = this.byId("uploadSet");

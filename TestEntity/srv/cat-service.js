@@ -28,13 +28,13 @@ module.exports = cds.service.impl(async function(){
         // req.data.IsActiveEntity = false;
         req.data.url = `/odata/v4/catalog/Files(ID=${req.data.ID},IsActiveEntity=false)/content`;
     })
-    this.before('CREATE', Files, async req => {
-        debugger
-        console.log('Create called')
-        console.log(JSON.stringify(req.data))
-        // req.data.IsActiveEntity = false;
-        req.data.url = `/odata/v4/catalog/Files(ID=${req.data.ID},IsActiveEntity=true)/content`;
-    })
+    // this.before('CREATE', Files, async req => {
+    //     debugger
+    //     console.log('Create called')
+    //     console.log(JSON.stringify(req.data))
+    //     // req.data.IsActiveEntity = false;
+    //     req.data.url = `/odata/v4/catalog/Files(ID=${req.data.ID},IsActiveEntity=true)/content`;
+    // })
 
     this.on('UPDATE',Compliance, async function(req,next){
         debugger
@@ -49,6 +49,15 @@ module.exports = cds.service.impl(async function(){
 
     this.on('UPDATE',MasterData,async function(req,next) {
         debugger
+        req.data.toFiles.forEach(file =>{
+            var filePosition = file.url.indexOf('false');
+            if (filePosition > 0){
+                var firstPart = file.url.substring(0,filePosition);
+                var secondPart = file.url.substring(filePosition);
+                var newurl = firstPart + 'true' + secondPart.substring(5);
+                file.url = newurl;
+            }
+        })
         var diff = await req.diff();
         var date = new Date();
         var DateTime = date.toLocaleString('en-GB', { timeZone: 'UTC' });
